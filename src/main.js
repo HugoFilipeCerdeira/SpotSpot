@@ -20,13 +20,15 @@ function createMainWindow() {
   mainWindow = new BrowserWindow({
     width: 250,
     height: 70,
+    minWidth: 120,
+    minHeight: 70,
     acceptFirstMouse: true,
     alwaysOnTop: true,
     backgroundColor: '#191917',
     icon: path.join(__dirname, 'images/icon/icon.png'),
     focusable: false,
     frame: false,
-    resizable: false,
+    resizable: true,
     title: 'SpotSpot',
     transparent: true
   })

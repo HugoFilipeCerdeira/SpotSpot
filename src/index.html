@@ -5,13 +5,16 @@
   <meta charset="UTF-8">
   <title>SpotSpot</title>
   <link rel="stylesheet" href="../node_modules/minireset.css/minireset.css">
+  <link rel="stylesheet" href="../node_modules/font-awesome/css/font-awesome.css">
   <link rel="stylesheet" href="./style/main.scss">
 </head>
 
 <body>
 
   <div class="layer-track">
-    <div id="js-art" class="art"></div>
+    <div id="js-art" class="art">
+      <div class="test"></div>
+    </div>
     <div class="details">
       <div id="js-trackArtist" class="detail"></div>
       <div id="js-trackName" class="detail"></div>
@@ -20,22 +23,23 @@
 
   <div class="layer-dimmer"></div>
 
-  <div class="layer-pauseIcon"><i class="icon icon-pause"></i></div>
+  <div class="layer-pauseIcon"><i class="fa fa-pause"></i></div>
 
   <div class="layer-controls">
     <div class="control">
-      <button id="js-previous" class="button">
-        <i class="icon icon-previous"></i>
+      <button id="js-previous" class="button control js-control">
+        <i class="fa fa-step-backward"></i>
       </button>
     </div>
     <div class="control">
-      <button id="js-playPause" class="button button-circle">
-        <i id="js-playPauseIcon" class="icon"></i>
+      <button id="js-playPause" class="button control js-control">
+        <i class="fa fa-play-circle"></i>
+        <i class="fa fa-pause-circle"></i>
       </button>
     </div>
     <div class="control">
-      <button id="js-next" class="button">
-        <i class="icon icon-next"></i>
+      <button id="js-next" class="button control js-control">
+        <i class="fa fa-step-forward"></i>
       </button>
     </div>
   </div>

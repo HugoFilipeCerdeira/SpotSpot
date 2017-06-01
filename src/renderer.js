@@ -9,7 +9,6 @@ const textFit = require('textFit')
 // Controls
 const previous = document.getElementById('js-previous')
 const playPause = document.getElementById('js-playPause')
-const playPauseIcon = document.getElementById('js-playPauseIcon')
 const next = document.getElementById('js-next')
 const openSpotify = document.getElementById('js-open-spotify')
 
@@ -17,6 +16,30 @@ const openSpotify = document.getElementById('js-open-spotify')
 const art = document.getElementById('js-art')
 const trackArtist = document.getElementById('js-trackArtist')
 const trackName = document.getElementById('js-trackName')
+
+/**
+ * fitDetails
+ * fit details text to box
+ */
+const fitDetails = () => {
+  textFit(document.getElementsByClassName('detail'), {
+    multiLine: true,
+    minFontSize: 8,
+    maxFontSize: 28
+  })
+}
+
+/**
+ * fitControls
+ * fit control icons to window
+ */
+const fitControls = () => {
+  textFit(document.getElementsByClassName('js-control'), {
+    multiLine: false,
+    minFontSize: 28,
+    maxFontSize: 100
+  })
+}
 
 /**
  * Update UI with album art, artist, and track info
@@ -32,11 +55,7 @@ const setTrackDetails = () =>
       trackName.innerText = track.name
 
       // Fit text to boxes
-      textFit(document.getElementsByClassName('detail'), {
-        multiLine: true,
-        minFontSize: 8,
-        maxFontSize: 14
-      })
+      fitDetails()
     } else {
       populateDetails() // this catches a bug in the notification listener when closing Spotify
     }
@@ -50,13 +69,9 @@ const setState = () =>
     if (state) {
       switch (state.state) {
         case 'playing':
-          playPauseIcon.classList.remove('icon-play')
-          playPauseIcon.classList.add('icon-pause')
           document.body.classList.remove('is-paused')
           break
         case 'paused':
-          playPauseIcon.classList.remove('icon-pause')
-          playPauseIcon.classList.add('icon-play')
           document.body.classList.add('is-paused')
           break
         default:
@@ -82,6 +97,12 @@ const populateDetails = () => {
 
 // Load...
 populateDetails()
+fitControls()
+
+window.addEventListener('resize', () => {
+  fitDetails()
+  fitControls()
+})
 
 // Listen for track/status changes and update
 electron.ipcRenderer.on('notification', function(event, message) {
